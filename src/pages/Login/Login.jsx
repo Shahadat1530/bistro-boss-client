@@ -15,6 +15,7 @@ const Login = () => {
         const password = form.password.value;
 
         console.log(email, password);
+        form.reset();
     };
 
     const handleCaptcha = () => {
@@ -61,7 +62,7 @@ const Login = () => {
                                 <LoadCanvasTemplate />
                             </label>
                             <input type="text" ref={captchaRef} name='captcha' placeholder="type above text" className="input input-bordered" required />
-                            <button onClick={handleCaptcha} className="btn btn-outline btn-xs mt-2">Validated</button>
+                            <button type='button' onClick={handleCaptcha} className="btn btn-outline btn-xs mt-2">Validated</button>
                         </div>
                         <div className="form-control mt-6">
                             <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
