@@ -25,7 +25,6 @@ const Login = () => {
                 console.log(user);
             })
 
-        form.reset();
     };
 
     const handleCaptcha = () => {
