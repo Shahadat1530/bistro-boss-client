@@ -15,6 +15,8 @@ const SignUp = () => {
             const loggedUser = result.user;
             console.log(loggedUser);
         })
+
+        form.reset();
     };
 
     return (
