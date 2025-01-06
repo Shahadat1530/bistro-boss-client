@@ -103,7 +103,7 @@ const Login = () => {
                             <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
                         </div>
                     </form>
-                    <p><small>New Here? <Link to='/signup'>Create an account!</Link></small></p>
+                    <p className='text-center py-2'><small>New Here? <Link to='/signup'>Create an account!</Link></small></p>
                 </div>
             </div>
         </div>

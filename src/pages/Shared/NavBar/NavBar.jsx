@@ -19,6 +19,7 @@ const NavBar = () => {
         {
             user ?
                 <>
+                    <p>{user?.displayName}</p>
                     <button onClick={handleLogOut} className='btn btn-ghost'>Logout</button>
                 </> :
                 <>
