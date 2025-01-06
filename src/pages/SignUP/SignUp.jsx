@@ -10,7 +10,6 @@ const SignUp = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
-
     const onSubmit = (data) => {
         console.log(data)
         createUser(data.email, data.password)
