@@ -4,6 +4,7 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const Login = () => {
     const captchaRef = useRef(null);
@@ -45,7 +46,7 @@ const Login = () => {
                       `
                     }
                 });
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
             })
 
     };
@@ -104,7 +105,10 @@ const Login = () => {
                         </div>
                     </form>
                     <p className='text-center py-2'><small>New Here? <Link to='/signup'>Create an account!</Link></small></p>
+                    <div className="divider"></div>
+                    <SocialLogin></SocialLogin>
                 </div>
+
             </div>
         </div>
     );
