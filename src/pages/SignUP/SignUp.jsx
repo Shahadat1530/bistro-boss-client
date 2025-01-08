@@ -4,42 +4,50 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const SignUp = () => {
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
     const onSubmit = (data) => {
-        console.log(data)
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('user Updated');
-                        reset();
-                        Swal.fire({
-                            title: "SignUp Success!",
-                            showClass: {
-                                popup: `
-                                            animate__animated
-                                            animate__fadeInUp
-                                            animate__faster
-                                          `
-                            },
-                            hideClass: {
-                                popup: `
-                                            animate__animated
-                                            animate__fadeOutDown
-                                            animate__faster
-                                          `
-                            }
-                        });
-                        navigate('/');
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    reset();
+                                    Swal.fire({
+                                        title: "SignUp Success!",
+                                        showClass: {
+                                            popup: `
+                                                animate__animated
+                                                animate__fadeInUp
+                                                animate__faster
+                                              `
+                                        },
+                                        hideClass: {
+                                            popup: `
+                                                animate__animated
+                                                animate__fadeOutDown
+                                                animate__faster
+                                              `
+                                        }
+                                    });
+                                    navigate('/');
+                                }
+                            })
                     })
-                    .catch(error => console.log(error))
+                .catch(error => console.log(error))
             })
 
 
