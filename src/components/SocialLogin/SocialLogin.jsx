@@ -11,19 +11,17 @@ const SocialLogin = () => {
 
     const handleGoogle = () => {
         googleSignIn()
-        .then(result => {
-            console.log(result.user);
-            const userInfo = {
-                name: result.user?.displayName,
-                email: result.user?.email
-            };
+            .then(result => {
+                const userInfo = {
+                    name: result.user?.displayName,
+                    email: result.user?.email
+                };
 
-            axiosPublic.post('/users', userInfo)
-            .then(res => {
-                console.log(res.data);
-                navigate('/')
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        navigate('/')
+                    })
             })
-        })
     }
 
     return (
